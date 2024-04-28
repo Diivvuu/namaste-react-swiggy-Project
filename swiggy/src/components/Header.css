@@ -24,3 +24,6 @@
   font-weight: 700;
   cursor: pointer;
 }
+.LoginButton{
+  padding: 10px 20px;
+}
