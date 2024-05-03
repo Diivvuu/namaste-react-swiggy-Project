@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Example in CSS file */
+@font-face {
+  font-family: 'nimbus';
+  src: url('../src/assets/fonts/NimbusSanL-Bol.otf') format('truetype');
+  /* Add other font weights and styles if available */
+}

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./Body.css";
+// import "./Body.css";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 // import RestaurantContainer from "./RestaurantContainer";
 const Body = () => {
   const [ListOfRestaurants, setListOfRestaurants] = useState([]);
@@ -31,23 +32,33 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you are offline, please check your internent connection.
+      </h1>
+    );
+
   if (ListOfRestaurants.length === 0) {
     return <Shimmer />;
   }
   return (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="body bg-slate-300">
+      <div className="flex justify-between items-center p-12">
+        <div>
           <input
             type="text"
             placeholder="Search your Restaurant..."
-            className="searchBox"
+            className="bg-slate-200 p-2"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
             }}
           />
           <button
+          className="bg-slate-700 p-2 text-white"
             onClick={() => {
               console.log(searchText);
               const filteredRestaurant = ListOfRestaurants.filter((res) =>
@@ -60,7 +71,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="bg-slate-500 p-2 text-white"
           onClick={() => {
             // filter logic
             const filteredList = ListOfRestaurants.filter(
@@ -75,7 +86,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap items-center justify-center">
         {filteredRestaurant.map((restaurant) => (
           <Link
             key={restaurant.info?.id}
