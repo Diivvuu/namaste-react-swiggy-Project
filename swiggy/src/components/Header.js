@@ -12,7 +12,7 @@ const Header = () => {
         <img src={logo} alt="App logo" className="w-32 mt-3 ml-3 " />
       </div>
       <div className="flex justify-center items-center">
-        <ul className="flex gap-5 bg-slate-500 rounded">
+        <ul className="flex gap-5 bg-slate-700 rounded">
           <li className="font-custom hover:scale-150 transition-all p-2 mx-5 text-white">
             <Link to="/">Home</Link>
           </li>
@@ -41,7 +41,7 @@ const Header = () => {
           </button>
         </div>
       </div>
-      <div className="p-4 font-custom absolute right-5 text-white text-sm bg-slate-500 rounded ">
+      <div className="flex justify-between  items-center p-4 font-custom  text-slate-500 text-sm bg">
         OnlineStatus : {onlineStatus ? "✅" : "🚫"}
       </div>
     </div>

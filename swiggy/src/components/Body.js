@@ -16,9 +16,9 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=31.33000&lng=75.58440&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.624480699999999&page_type=DESKTOP_WEB_LISTING"
+      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.624480699999999&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     // console.log(
@@ -51,14 +51,14 @@ const Body = () => {
           <input
             type="text"
             placeholder="Search your Restaurant..."
-            className="bg-slate-200 p-2"
+            className="bg-white p-2 rounded-2xl border-4 border-slate-700"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
             }}
           />
           <button
-          className="bg-slate-700 p-2 text-white"
+            className="bg-slate-700 p-2 m-2 text-white rounded-2xl border-4 border-slate-700"
             onClick={() => {
               console.log(searchText);
               const filteredRestaurant = ListOfRestaurants.filter((res) =>
@@ -71,7 +71,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="bg-slate-500 p-2 text-white"
+          className="bg-slate-700 py-2 px-4 border-4 border-slate-700 text-white rounded-2xl"
           onClick={() => {
             // filter logic
             const filteredList = ListOfRestaurants.filter(
@@ -86,7 +86,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="flex flex-wrap gap-8 items-center justify-center">
+      <div className="flex flex-wrap gap-12 justify-center">
         {filteredRestaurant.map((restaurant) => (
           <Link
             key={restaurant.info?.id}
