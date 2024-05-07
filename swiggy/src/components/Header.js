@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../input.css";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
+// import UserContext from "../utils/UserContext";
 import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [LoginButton, setLoginButton] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  // const { loggedInUser } = useContext(UserContext);
   return (
     <div className="flex justify-center bg-slate-200 relative">
       <div className="logo-container">
         <img src={logo} alt="App logo" className="w-32 mt-3 ml-3 " />
       </div>
       <div className="flex justify-center items-center">
-        <ul className="flex gap-5 bg-slate-700 rounded">
+        <ul className="flex justify-center items-center gap-5 bg-slate-700 rounded">
           <li className="font-custom hover:scale-150 transition-all p-2 mx-5 text-white">
             <Link to="/">Home</Link>
           </li>
@@ -25,24 +27,27 @@ const Header = () => {
           <li className="font-custom hover:scale-150 transition-all p-2 mx-5 text-white">
             <Link to="/cart">Cart</Link>
           </li>
+          {/* <div>
+            <Link className="links">Ordering for : {loggedInUser}</Link>
+          </div> */}
+          <div className="flex-col justify-center items-center p-8">
+            <button
+              className="font-custom text-white hover:scale-150 transition-all "
+              onClick={() => {
+                if (LoginButton === "Login") {
+                  setLoginButton("Logout");
+                } else {
+                  setLoginButton("Login");
+                }
+              }}
+            >
+              {LoginButton}
+            </button>
+          </div>
         </ul>
-        <div className="flex-col justify-center items-center p-8">
-          <button
-            className="font-custom hover:scale-150 transition-all "
-            onClick={() => {
-              if (LoginButton === "Login") {
-                setLoginButton("Logout");
-              } else {
-                setLoginButton("Login");
-              }
-            }}
-          >
-            {LoginButton}
-          </button>
-        </div>
       </div>
-      <div className="flex justify-between  items-center p-4 font-custom  text-slate-500 text-sm bg">
-        OnlineStatus : {onlineStatus ? "✅" : "🚫"}
+      <div className="flex justify-between gap-8 items-center p-4 font-custom text-slate-500 text-sm bg">
+        <div>OnlineStatus : {onlineStatus ? "✅" : "🚫"}</div>
       </div>
     </div>
   );
