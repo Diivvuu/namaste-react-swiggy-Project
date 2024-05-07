@@ -1,8 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { ITEM_API } from "../assets/constants";
 import vegLogo from "../assets/veg-icon.webp";
 import nonVegLogo from "../assets/nonVeg-icon.webp";
+import { addItem } from "../utils/cartSlice";
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
   return (
     <div>
       {items.map((item) => (
@@ -32,12 +38,24 @@ const ItemList = ({ items }) => {
                     100}
                 </h3>
               </div>
-              <p className="text-sm text-slate-600">{item?.card?.info?.description}</p>
+              <p className="text-sm text-slate-600">
+                {item?.card?.info?.description}
+              </p>
             </div>
-            <img
-              className="w-36 rounded-lg"
-              src={ITEM_API + item?.card?.info?.imageId}
-            />
+            <div>
+              <div className="absolute">
+                <button
+                  className="rounded-2xl border-2 text-black border-slate-300 bg-slate-200 mx-10 my-16 p-2"
+                  onClick={() => handleAddItem(item)}
+                >
+                  Add +{" "}
+                </button>
+              </div>
+              <img
+                className="w-36 rounded-lg"
+                src={ITEM_API + item?.card?.info?.imageId}
+              />
+            </div>
           </span>
         </div>
       ))}

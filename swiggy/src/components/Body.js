@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-// import "./Body.css";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
-// import RestaurantContainer from "./RestaurantContainer";
 const Body = () => {
   const [ListOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
-  // const { loggedInUser, setUserName } = useContext(UserContext);
+  const { loggedInUser, setUserName } = useContext(UserContext);
   const [searchText, setsearchText] = useState("");
   useEffect(() => {
     fetchData();
@@ -52,14 +50,14 @@ const Body = () => {
           <input
             type="text"
             placeholder="Search your Restaurant..."
-            className="bg-white p-2 rounded-2xl border-4 border-slate-700"
+            className="bg-white w-80 p-2 rounded-2xl border-4 border-slate-700"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
             }}
           />
           <button
-            className="bg-slate-700 p-2 m-2 text-white rounded-2xl border-4 border-slate-700"
+            className=" w-40 font-bold text-2xl p-2 text-black"
             onClick={() => {
               console.log(searchText);
               const filteredRestaurant = ListOfRestaurants.filter((res) =>
@@ -70,13 +68,13 @@ const Body = () => {
           >
             Search
           </button>
-          {/* <input
-            className="p-2 m-2 rounded-2xl border-4 border-slate-700"
-            placeholder="who are you ordering for"
-            value={loggedInUser}
-            onChange={(e) => setUserName(e.target.value)}
-          ></input> */}
         </div>
+        <input
+          placeholder="who are you ordering for"
+          className="p-2 border-4 border-slate-700 rounded-2xl"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}
+        ></input>
         <button
           className="bg-slate-700 py-2 px-4 border-4 border-slate-700 text-white rounded-2xl"
           onClick={() => {
